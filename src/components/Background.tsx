@@ -21,7 +21,7 @@ export default function Background() {
   }
 
   return (
-    <div className="absolute bottom-0 left-0 h-80 overflow-hidden w-full  ">
+    <div className=" h-80 overflow-hidden w-full  ">
       <Spline
         className="mt-20"
         scene="https://prod.spline.design/yE-AaZwp0L8wgLMz/scene.splinecode"

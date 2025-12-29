@@ -15,7 +15,7 @@ const navigateHeader: { name: string; link: string }[] = [
 const Header = () => {
   const pathname = usePathname();
   return (
-    <header className="relative p-5 mx-20 flex flex-1 bg-transparent items-center justify-between ">
+    <header className="p-5 mx-20 flex flex-1 bg-transparent items-center justify-between ">
       <div className=" flex items-end gap-2 ">
         <Image
           className="rounded-4xl "
