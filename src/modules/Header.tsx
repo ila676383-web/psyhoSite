@@ -16,7 +16,7 @@ const Header = () => {
   const pathname = usePathname();
   return (
     <header className="p-5 mx-20 flex flex-1 bg-transparent items-center justify-between ">
-      <div className=" flex items-end gap-2 ">
+      <div className=" flex items-center gap-2 ">
         <Image
           className="rounded-4xl "
           src={icon}
@@ -24,7 +24,7 @@ const Header = () => {
           height={50}
           alt="logo"
         />
-        <h1 className="text-2xl font-extrabold font-stretch-50% textTyping">
+        <h1 className="text-2xl font-bold uppercase font-stretch-85% textTyping">
           Ольга Медведева
         </h1>
       </div>
