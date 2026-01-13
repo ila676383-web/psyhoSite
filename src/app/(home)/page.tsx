@@ -1,10 +1,14 @@
+import Slider from "@/components/Slider/Slider";
 import frame1 from "../../images/frame1.png";
 import frame2 from "../../images/frame2.png";
 import SectionMain from "@/components/SectionMain";
+import FormBack from "@/components/FormBack";
+import diplom from '@/components/Slider/diplom.jpeg'
 
+const slideEducation = [diplom, diplom, diplom];
 const page = () => {
   return (
-    <main className="relative left-10 bottom-10 -z-1 flex flex-col gap-20 ">
+    <main className="relative left-10 bottom-10 flex flex-col gap-20 ">
       <SectionMain
         frame={frame1}
         position={"r"}
@@ -21,6 +25,22 @@ const page = () => {
           "В рамках работы с психологом предусмотрена диагностика эмоционального состояния пациента. Она рассчитана на выявление различных отклонений или проблем восприятия человеком окружающего мира. За услугой психологической реабилитации обращаются люди, пережившие сильный стресс или душевное потрясение."
         }
       />
+
+      <Slider
+        header={"Мои дипломы психолога"}
+        slideEducation={slideEducation}
+      />
+      <FormBack />
+      <br />
+      <SectionMain
+        frame={frame1}
+        position={"c"}
+        head={"Header"}
+        text={
+          "Важно помнить: когда дело касается вашего благополучия, обращение за помощью – это знак силы, а не слабости."
+        }
+      />
+      <br />
     </main>
   );
 };

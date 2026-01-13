@@ -15,8 +15,8 @@ const navigateHeader: { name: string; link: string }[] = [
 const Header = () => {
   const pathname = usePathname();
   return (
-    <header className="p-5 mx-20 flex flex-1 bg-transparent items-center justify-between ">
-      <div className=" flex items-center gap-2 ">
+    <header className="p-5 mx-15 mb-20 2xl:mx-40 flex flex-1 xl:gap-10 bg-transparent items-center justify-between md:text-sm lg:text-[20px] 2xl:text-3xl">
+      <div className=" flex items-center gap-2">
         <Image
           className="rounded-4xl "
           src={icon}
@@ -24,15 +24,15 @@ const Header = () => {
           height={50}
           alt="logo"
         />
-        <h1 className="text-2xl font-bold uppercase font-stretch-85% textTyping">
+        <h1 className=" font-bold uppercase font-stretch-85% 2xl:font-stretch-75% textTyping">
           Ольга Медведева
         </h1>
       </div>
 
-      <nav className="flex justify-between items-center p-2 gap-7">
+      <nav className="flex flex-1 flex-nowrap justify-end items-center p-2 lg:gap-7    md:gap-3 sm:gap-2">
         {navigateHeader.map((item, id) => (
           <Link
-            className={`text-2xl font-bold font-stretch-75% uppercase transition-transform ease-in-out duration-300 hover:scale-105 active:scale-95 ${
+            className={`font-bold text-nowrap font-stretch-75% uppercase transition-transform ease-in-out duration-300 hover:scale-105 active:scale-95 ${
               pathname === item.link && "animate-bounce"
             }`}
             key={id}

@@ -11,14 +11,14 @@ export type TAdminData = {
 const AdminForm = () => {
   const { register, handleSubmit, reset, formState } = useForm<TAdminData>();
 
-  const router = useRouter()
+  const router = useRouter();
 
   const onSubmit = async (data: TAdminData) => {
     const fd = new FormData();
     fd.set("username", data.username);
     fd.set("password", data.password);
-    const isAuth = await checkAdmin(fd);
-    if (isAuth) router.push("/admin/panel");
+    const auth = await checkAdmin(fd);
+    if (auth) router.push("/admin/panel");
     reset();
   };
 

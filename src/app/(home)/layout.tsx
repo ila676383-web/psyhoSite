@@ -3,6 +3,7 @@ import { Geist, Geist_Mono , Inter} from "next/font/google";
 import "../globals.css";
 import Header from "@/modules/Header";
 import Footer from "@/modules/Footer";
+import BtnFormBack from "@/components/BtnFormBack";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -31,11 +32,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={` ${interSans.variable} antialiased`}
-      >
+      <body className={` ${interSans.variable} antialiased`}>
         <Header />
         {children}
+        <BtnFormBack />
         <Footer />
       </body>
     </html>

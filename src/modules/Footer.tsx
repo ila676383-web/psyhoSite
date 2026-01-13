@@ -3,7 +3,7 @@ import Background from "@/components/Background";
 
 const Footer = () => {
   return (
-    <footer className="w-full">
+    <footer className="w-full mask-t-to-transparent">
       <Background />
     </footer>
   );
