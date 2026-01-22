@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import btnForm from "./BtnBack.svg";
+import btnForm from "../../public/btnBack.svg";
 import { useState } from "react";
 import FormBack from "./FormBack";
 
