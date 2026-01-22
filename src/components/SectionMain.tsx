@@ -19,11 +19,12 @@ const SectionMain = ({
   const [darkness, setDarkness] = useState(1);
 
   useEffect(() => {
+    if (window.innerWidth < 768) return;
     const current = sectionRef.current;
     if (!current) return;
 
     const next = current.nextElementSibling as HTMLElement | null;
-    if (!next) return
+    if (!next) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -35,10 +36,17 @@ const SectionMain = ({
           return;
         }
 
-        const start = vh * 0.8;
+        const start = vh;
         const end = vh * 0.5;
 
-        const progress = (start - top) / (start - end);
+        let progress;
+        if (top > start) {
+          progress = 0;
+        } else if (top < end) {
+          progress = 1;
+        } else {
+          progress = (start - top) / (start - end);
+        }
         const clamped = Math.max(0, Math.min(progress, 1));
 
         setDarkness(1 - clamped);
@@ -49,55 +57,75 @@ const SectionMain = ({
     );
 
     observer.observe(next);
+    return () => observer.disconnect();
   }, []);
 
   return (
     <section
       ref={sectionRef}
-      className={`flex items-center justify-between mx-[20%] sticky top-0 self-start uppercase `}
-      style={{
-        opacity: darkness,
-        pointerEvents: darkness === 0 ? "none" : "auto",
-      }}
+      className="
+
+      flex flex-col md:flex-row
+      items-center md:justify-between
+      2xl:max-w-3/4
+      gap-10
+      px-3 md:px-12 xl:px-40
+      py-8
+      mx-auto
+      -z-1
+
+    "
+      style={{ opacity: darkness }}
     >
       {position === "r" && (
         <>
-          <div className="bg-gray-400/20 px-5 rounded-2xl w-[45%]">
-            <Image src={frame} width={500} height={1000} alt="photo"></Image>
+          <div className="w-full md:w-[45%] flex justify-center">
+            <Image
+              className="shadow-lg rounded-2xl w-full max-w-[320px] md:max-w-[350px]"
+              src={frame}
+              width={350}
+              height={350}
+              alt={head}
+            />
           </div>
 
-          <div className="w-[45%] flex flex-col gap-5 ">
-            <h1 className="text-4xl font-bold font-stretch-75% ">{head}</h1>
-            <p className="">{text}</p>
+          <div className="w-full md:w-[45%] flex flex-col gap-5 text-left md:text-left">
+            <h2 className="text-2xl md:text-4xl font-bold">{head}</h2>
+            <p className="text-sm md:text-base">{text}</p>
           </div>
         </>
       )}
-
       {position === "l" && (
         <>
-          <div className="w-[45%] flex flex-col gap-5 ">
-            <h1 className="text-4xl font-bold font-stretch-75% uppercase">
-              {head}
-            </h1>
-            <p className="">{text}</p>
+          <div className="w-full md:w-[45%] flex flex-col gap-5 text-left md:text-left">
+            <h2 className="text-2xl md:text-4xl font-bold">{head}</h2>
+            <p className="text-sm md:text-base">{text}</p>
           </div>
-          <div className="bg-gray-400/20 px-5 rounded-2xl w-[45%]">
-            <Image src={frame} width={500} height={1000} alt="photo"></Image>
+
+          <div className="w-full md:w-[45%] flex justify-center">
+            <Image
+              className="shadow-lg rounded-2xl w-full max-w-[320px] md:max-w-[350px]"
+              src={frame}
+              width={350}
+              height={350}
+              alt={head}
+            />
           </div>
         </>
       )}
+      {/* CENTER */}
       {position === "c" && (
-        <>
-          <div className="flex flex-col gap-5 justify-center items-center">
-            <div className="bg-gray-400/20 px-5 rounded-2xl w-[45%]">
-              <Image src={frame} width={500} height={1000} alt="photo"></Image>
-            </div>
-            <h1 className="text-4xl font-bold font-stretch-75% uppercase">
-              {head}
-            </h1>
-            <p className="w-[65%]">{text}</p>
-          </div>
-        </>
+        <div className="flex w-full flex-col items-center gap-6 text-center ">
+          <Image
+            className="shadow-lg rounded-2xl w-full max-w-[300px] md:max-w-[400px]"
+            src={frame}
+            width={400}
+            height={400}
+            alt={head}
+          />
+          <h2 className="text-2xl md:text-4xl font-bold">{head}</h2>
+          <p className="max-w-xl">{text}</p>
+        </div>
       )}
     </section>
   );

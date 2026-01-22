@@ -16,9 +16,9 @@ const ModalSlider = ({
       onClick={onClose}
     >
       <Image
-        className="rounded-2xl z-20"
+        className="rounded-2xl md:h-[80%] w-auto z-20"
         width={1200}
-        height={1200}
+        height={800}
         alt="education"
         src={img}
       />

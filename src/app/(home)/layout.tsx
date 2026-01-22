@@ -13,7 +13,7 @@ import BtnFormBack from "@/components/BtnFormBack";
 // const geistMono = Geist_Mono({
 //   variable: "--font-geist-mono",
 //   subsets: ["latin"],
-// });
+// }); формы по ртк
 
 const interSans =Inter({
   variable: '--font-inter',
@@ -41,3 +41,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+
