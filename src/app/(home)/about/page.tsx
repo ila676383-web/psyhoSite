@@ -14,7 +14,7 @@ const page = () => {
         head="Ольга Медведева - психолог с игровым подходом"
       />
 
-      <section className="w-full max-w-3xl border-b border-gray-300 pb-14">
+      <section className="w-full max-w-3xl border-b border-pink-300 pb-14">
         <h2 className="text-3xl font-semibold mb-8 tracking-wide">
           Мой опыт и квалификация
         </h2>
@@ -47,7 +47,7 @@ const page = () => {
 
       <Slider header="Мои дипломы психолога" slideEducation={slideEducation} />
 
-      <section className="w-full max-w-3xl border-b border-gray-300 py-14">
+      <section className="w-full max-w-3xl border-b border-pink-300 py-14">
         <h2 className="text-3xl font-semibold mb-6 tracking-wide">
           Почему я использую психологические игры
         </h2>

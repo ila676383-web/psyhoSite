@@ -98,7 +98,7 @@ const SectionMain = ({
       {position === "l" && (
         <>
           <div className="w-full md:w-[45%] flex flex-col gap-5 text-left md:text-left">
-            <h2 className="text-2xl md:text-4xl font-bold">{head}</h2>
+            <h2 className="text-2xl md:text-4xl font-bold text-pink-300">{head}</h2>
             <p className="text-sm md:text-base">{text}</p>
           </div>
 
@@ -123,7 +123,7 @@ const SectionMain = ({
             height={400}
             alt={head}
           />
-          <h2 className="text-2xl md:text-4xl font-bold">{head}</h2>
+          <h2 className="text-2xl text-pink-300 md:text-4xl font-bold">{head}</h2>
           <p className="max-w-xl">{text}</p>
         </div>
       )}
