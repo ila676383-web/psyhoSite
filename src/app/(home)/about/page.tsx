@@ -15,7 +15,7 @@ const page = () => {
       />
 
       <section className="w-full max-w-3xl border-b border-pink-300 pb-14">
-        <h2 className="text-3xl font-semibold mb-8 tracking-wide">
+        <h2 className="text-3xl  mb-8 text-pink-300 tracking-wide">
           Мой опыт и квалификация
         </h2>
         <ul className="list-disc list-inside space-y-4 text-lg leading-relaxed">
@@ -48,7 +48,7 @@ const page = () => {
       <Slider header="Мои дипломы психолога" slideEducation={slideEducation} />
 
       <section className="w-full max-w-3xl border-b border-pink-300 py-14">
-        <h2 className="text-3xl font-semibold mb-6 tracking-wide">
+        <h2 className="text-3xl text-pink-300  mb-6 tracking-wide">
           Почему я использую психологические игры
         </h2>
         <p className="text-lg leading-relaxed max-w-prose">
@@ -59,7 +59,7 @@ const page = () => {
       </section>
 
       <section className="w-full max-w-3xl pt-14">
-        <h2 className="text-3xl font-semibold mb-8 tracking-wide">
+        <h2 className="text-3xl mb-8 tracking-wide">
           Что вы получите, работая со мной
         </h2>
         <ul className="list-disc list-inside space-y-4 text-lg leading-relaxed max-w-prose">
