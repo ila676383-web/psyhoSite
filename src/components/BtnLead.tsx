@@ -7,7 +7,7 @@ import { setIsActive } from "@/slices/form.slice";
 
 const BtnLead = ({ buttonText }: { buttonText: string }) => {
 const dispatch = useDispatch()
-const isActive = useSelector((state: RootState)=> state)
+const isActive = useSelector((state: RootState)=> state.form.value)
   return (
     <>
       <button

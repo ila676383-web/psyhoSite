@@ -1,15 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-const initialState: boolean = false;
+const initialState: {value: boolean} = {value: false};
 export const formSlice = createSlice({
   name: "form",
   initialState,
   reducers: {
     setIsActive: (state, action: PayloadAction<boolean>) => {
-      return action.payload;
+      state.value = action.payload;
     },
-    isActive: (state) => state
+
   },
 });
 
-export const { isActive,setIsActive } = formSlice.actions;
+export const { setIsActive } = formSlice.actions;
 export const reducer = formSlice.reducer;
