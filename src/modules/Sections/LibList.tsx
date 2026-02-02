@@ -35,7 +35,7 @@ const LibList = () => {
   const cards = category === "books" ? books : movies;
 
   return (
-    <section className="w-screen grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10  justify-items-center ">
+    <section className="max-w-screen grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10  justify-items-center ">
       {cards.map((card) => (
         <div
           key={card.id}
