@@ -1,6 +1,6 @@
 "use client";
 
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import { StaticImageData } from "next/dist/shared/lib/get-img-props";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
@@ -10,61 +10,37 @@ const SectionMain = ({
   head,
   text,
 }: {
-  frame: string | StaticImport;
+  frame: string | StaticImageData;
   position: string;
   head: string;
   text: string;
 }) => {
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const [darkness, setDarkness] = useState(1);
-
+ 
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const section = useRef<HTMLElement | null>(null);
   useEffect(() => {
-    if (window.innerWidth < 768) return;
-    const current = sectionRef.current;
-    if (!current) return;
+    const handleScroll = () => {
+      if (!section.current) return;
 
-    const next = current.nextElementSibling as HTMLElement | null;
-    if (!next) return;
+      const sectionTop = section.current.offsetTop;
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        const top = entry.boundingClientRect.top;
-        const vh = entry.rootBounds?.height ?? window.innerHeight;
-
-        if (top >= vh) {
-          setDarkness(1);
-          return;
-        }
-
-        const start = vh;
-        const end = vh * 0.5;
-
-        let progress;
-        if (top > start) {
-          progress = 0;
-        } else if (top < end) {
-          progress = 1;
-        } else {
-          progress = (start - top) / (start - end);
-        }
-        const clamped = Math.max(0, Math.min(progress, 1));
-
-        setDarkness(1 - clamped);
-      },
-      {
-        threshold: Array.from({ length: 61 }, (_, i) => i / 60),
+      if (scrollY + windowHeight > sectionTop) {
+        console.log("startAnimation");
+        setIsVisible(true);
       }
-    );
-
-    observer.observe(next);
-    return () => observer.disconnect();
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
     <section
-      ref={sectionRef}
-      className="
-
+      ref={section}
+      className={`
       flex flex-col md:flex-row
       items-center md:justify-between
       2xl:max-w-3/4
@@ -73,9 +49,10 @@ const SectionMain = ({
       py-8
       mx-auto
       -z-1
-
-    "
-      style={{ opacity: darkness }}
+       opacity-0 transition-opacity duration-2000 ease-in-out ${isVisible && "opacity-100 "}
+`}
+    
+      
     >
       {position === "r" && (
         <>
@@ -98,7 +75,9 @@ const SectionMain = ({
       {position === "l" && (
         <>
           <div className="w-full md:w-[45%] flex flex-col gap-5 text-left md:text-left">
-            <h2 className="text-2xl md:text-4xl font-bold text-pink-300">{head}</h2>
+            <h2 className="text-2xl md:text-4xl font-bold text-pink-300">
+              {head}
+            </h2>
             <p className="text-sm md:text-base">{text}</p>
           </div>
 
@@ -123,7 +102,9 @@ const SectionMain = ({
             height={400}
             alt={head}
           />
-          <h2 className="text-2xl text-pink-300 md:text-4xl font-bold">{head}</h2>
+          <h2 className="text-2xl text-pink-300 md:text-4xl font-bold">
+            {head}
+          </h2>
           <p className="max-w-xl">{text}</p>
         </div>
       )}

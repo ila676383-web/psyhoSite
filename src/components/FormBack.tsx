@@ -1,16 +1,19 @@
 "use client";
 
+import { sendToTg } from "@/app/action/SendToTg";
 import { useForm } from "react-hook-form";
 
 export type TFormBack = {
-  user: string;
-  phone: string | number;
+  name: string;
+  phone: string ;
 };
 const FormBack = () => {
-  const { register, formState, handleSubmit, reset } = useForm<TFormBack>({});
+  const { register, formState, handleSubmit, reset } = useForm<TFormBack>({
+    mode: "onChange",
+  });
 
-  const onSubmit = (data: TFormBack) => {
-    console.log(data);
+  const  onSubmit = async (data: TFormBack) => {
+    await sendToTg(data);
     reset();
   };
 
@@ -21,12 +24,14 @@ const FormBack = () => {
       className=" flex mx-auto flex-col gap-5 justify-center items-center"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <h1 className="text-2xl md:text-3xl uppercase font-bold text-pink-300 ">Записаться на прием</h1>
+      <h1 className="text-2xl md:text-3xl uppercase font-bold text-pink-300 ">
+        Записаться на прием
+      </h1>
       <input
         className="border p-2 text-2xl rounded-2xl"
         type="text"
         placeholder="Имя"
-        {...register("user")}
+        {...register("name")}
       />
 
       <div>

@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+
       <body className={` ${interSans.variable} antialiased`}>
         <StoreProvider>
           <Header />
@@ -32,6 +32,6 @@ export default function RootLayout({
           <Footer />
         </StoreProvider>
       </body>
-    </html>
+   
   );
 }

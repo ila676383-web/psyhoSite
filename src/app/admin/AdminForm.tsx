@@ -13,12 +13,12 @@ const AdminForm = () => {
 
   const router = useRouter();
 
+  //Авторизация
   const onSubmit = async (data: TAdminData) => {
     const fd = new FormData();
     fd.set("username", data.username);
     fd.set("password", data.password);
     const auth = await checkAdmin(fd);
-    if (auth) router.push("/admin/panel");
     reset();
   };
 
