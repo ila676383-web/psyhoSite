@@ -65,22 +65,22 @@ const page = () => {
           <ul className="flex flex-col gap-4">
             <li className="flex flex-col md:flex-row justify-between items-start border-b border-gray-300 pb-4">
               <h3 className="text-2xl">Индивидуальная консультация</h3>
-              <p>5 000.00 ₽</p>
+              <p>5 000 ₽</p>
             </li>
             <li className="flex flex-col md:flex-row justify-between items-start border-b border-gray-300 pb-4">
               <h3 className="text-2xl">Семейная консультация</h3>
-              <p>5 000.00 ₽</p>
+              <p>5 000 ₽</p>
             </li>
             <li className="flex flex-col md:flex-row justify-between items-start border-b border-gray-300 pb-4">
               <h3 className="text-2xl">Трансформационная игра в группе</h3>
-              <p>5 000.00 ₽</p>
+              <p>5 000 ₽</p>
             </li>
             <li className="flex flex-col md:flex-row justify-between items-start border-b border-gray-300 pb-4">
               <h3 className="text-2xl">Т-игра индивидуально</h3>
-              <p>5 000.00 ₽</p>
+              <p>5 000 ₽</p>
             </li>
             <li className="flex flex-col md:flex-row justify-between items-start border-b border-gray-300 pb-4">
-              <h3 className="text-2xl">Семейная т-игра</h3> <p>5 000.00 ₽</p>
+              <h3 className="text-2xl">Семейная т-игра</h3> <p>5 000 ₽</p>
             </li>
           </ul>
         </div>
