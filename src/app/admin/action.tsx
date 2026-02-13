@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 import { redirect } from "next/navigation";
 
+console.log("CHECK ADMIN CALLED");
 export const checkAdmin = async (FormData: FormData) => {
   const login = FormData.get("username");
   const password = FormData.get("password");
