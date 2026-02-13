@@ -4,6 +4,8 @@ import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 import { redirect } from "next/navigation";
 
+const isProd = process.env.NODE_ENV === "production";
+
 console.log("CHECK ADMIN CALLED");
 export const checkAdmin = async (FormData: FormData) => {
   const login = FormData.get("username");
@@ -25,7 +27,7 @@ export const checkAdmin = async (FormData: FormData) => {
   cookieStore.set("token", token, {
     httpOnly: true,
     path: "/",
-    secure: true,
+    secure: isProd,
     sameSite: "lax",
   });
 
