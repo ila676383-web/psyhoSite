@@ -22,7 +22,7 @@ export default function AdminForm() {
   const route = useRouter();
 
   const onSubmit = async (data: TAdminData) => {
-    const res = await fetch("/admin/route", {
+    const res = await fetch("/admin/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
      body: JSON.stringify(data),
