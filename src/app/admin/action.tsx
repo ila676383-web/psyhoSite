@@ -9,7 +9,7 @@ export const checkAdmin = async (FormData: FormData) => {
   const password = FormData.get("password");
 
   if (
-    login !== process.env.LOGIN_ADMIN &&
+    login !== process.env.LOGIN_ADMIN ||
     password !== process.env.PASSWORD_ADMIN
   ) {
     throw new Error("Invalidate data");
@@ -24,7 +24,8 @@ export const checkAdmin = async (FormData: FormData) => {
   cookieStore.set("token", token, {
     httpOnly: true,
     path: "/",
-    sameSite: "strict",
+    secure: true,
+    sameSite: "lax",
   });
 
   redirect("/admin/panel");

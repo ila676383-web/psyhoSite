@@ -26,7 +26,7 @@ const SelectFormAdmin = () => {
 
       {value === "libs" && (
         <>
-          <PanelForm setIsReload={setIsReload}  />
+          <PanelForm setIsReload={setIsReload} />
           <LibsList setIsReload={setIsReload} isReload={isReload} />
         </>
       )}
@@ -38,10 +38,10 @@ const SelectFormAdmin = () => {
       )}
       {value === "reviews" && (
         <>
-        <ReviewsForm setIsReload={setIsReload}/>
-        <ReviewList setIsReload={setIsReload} isReload={isReload} />
+          <ReviewsForm setIsReload={setIsReload} />
+          <ReviewList setIsReload={setIsReload} isReload={isReload} />
         </>
-        )}
+      )}
     </>
   );
 };
