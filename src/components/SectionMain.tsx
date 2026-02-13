@@ -15,9 +15,9 @@ const SectionMain = ({
   head: string;
   text: string;
 }) => {
- 
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const section = useRef<HTMLElement | null>(null);
+
   useEffect(() => {
     const handleScroll = () => {
       if (!section.current) return;
@@ -27,14 +27,18 @@ const SectionMain = ({
       const windowHeight = window.innerHeight;
 
       if (scrollY + windowHeight > sectionTop) {
-        console.log("startAnimation");
         setIsVisible(true);
       }
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
+  }, []);
+
+  useEffect(() => {
+    window.scrollY > 0 && window.scrollTo({ top: window.scrollY - 1, behavior: "instant" });
   }, []);
 
   return (
@@ -43,7 +47,7 @@ const SectionMain = ({
       className={`
       flex flex-col md:flex-row
       items-center md:justify-between
-      2xl:max-w-3/4
+      2xl:max-w-400
       gap-10
       px-3 md:px-12 xl:px-40
       py-8
@@ -51,8 +55,6 @@ const SectionMain = ({
       -z-1
        opacity-0 transition-opacity duration-2000 ease-in-out ${isVisible && "opacity-100 "}
 `}
-    
-      
     >
       {position === "r" && (
         <>

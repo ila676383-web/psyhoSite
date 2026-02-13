@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "../globals.css";
 import Header from "@/modules/Header";
 import Footer from "@/modules/Footer";
-import BtnFormBack from "@/components/BtnFormBack";
 
 import StoreProvider from "../StoreProvider";
 
@@ -23,15 +22,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-
+<html lang="ru">
       <body className={` ${interSans.variable} antialiased`}>
         <StoreProvider>
           <Header />
           {children}
-          <BtnFormBack />
+          
           <Footer />
         </StoreProvider>
       </body>
-   
+   </html>
   );
 }

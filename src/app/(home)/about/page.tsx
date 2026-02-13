@@ -11,6 +11,7 @@ import diplom8 from "@/images/diplom8.png";
 import diplom9 from "@/images/diplom9.png";
 import frame2 from "../../../images/frame2.png";
 import Image from "next/image";
+import BtnFormBack from "@/components/BtnFormBack";
 
 const slideEducation = [
   diplom1,
@@ -87,6 +88,7 @@ const page = () => {
           <li>Поддержка и сопровождение на протяжении всего процесса</li>
         </ul>
       </section>
+      <BtnFormBack />
     </main>
   );
 };

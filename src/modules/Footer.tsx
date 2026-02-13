@@ -21,18 +21,18 @@ const Footer = () => {
             <h3 className="text-xl font-semibold mb-3">Навигация</h3>
             <ul className="space-y-2 opacity-80">
               <li>
-                <Link href="#about" className="hover:opacity-100">
+                <Link href="/about" className="hover:opacity-100">
                   О проекте
                 </Link>
               </li>
               <li>
-                <Link href="#services" className="hover:opacity-100">
-                  Услуги
+                <Link href="/games" className="hover:opacity-100">
+                  Игры
                 </Link>
               </li>
               <li>
-                <Link href="#contact" className="hover:opacity-100">
-                  Связаться
+                <Link href="/libs" className="hover:opacity-100">
+                  Библиотека
                 </Link>
               </li>
             </ul>

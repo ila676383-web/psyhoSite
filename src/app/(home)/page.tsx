@@ -22,6 +22,7 @@ import office4 from "@/images/office4.png";
 import office5 from "@/images/office5.png";
 import SectionLead from "@/components/SectionLead";
 import Image from "next/image";
+import BtnFormBack from "@/components/BtnFormBack";
 
 const slideEducation = [
   diplom1,
@@ -131,6 +132,7 @@ const page = () => {
         header={"Сертификаты и образование"}
         slideEducation={slideEducation}
       />
+      <BtnFormBack />
     </main>
   );
 };
