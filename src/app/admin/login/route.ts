@@ -3,6 +3,10 @@ import jwt from "jsonwebtoken";
 
 export async function POST(req: Request) {
   const { username, password } = await req.json();
+  console.log("LOGIN FROM FORM:", username);
+console.log("PASSWORD FROM FORM:", password);
+console.log("ENV LOGIN:", process.env.LOGIN_ADMIN);
+console.log("ENV PASSWORD:", process.env.PASSWORD_ADMIN);
 
   if (
     username !== process.env.LOGIN_ADMIN ||
