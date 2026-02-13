@@ -1,10 +1,28 @@
 import SectionLead from "@/components/SectionLead";
 import Slider from "@/components/Slider/Slider";
-import diplom from "@/components/Slider/diplom.jpeg";
+import diplom1 from "@/images/diplom1.png";
+import diplom2 from "@/images/diplom2.png";
+import diplom3 from "@/images/diplom3.png";
+import diplom4 from "@/images/diplom4.png";
+import diplo5 from "@/images/diplom5.png";
+import diplom6 from "@/images/diplom6.png";
+import diplom7 from "@/images/diplom7.png";
+import diplom8 from "@/images/diplom8.png";
+import diplom9 from "@/images/diplom9.png";
 import frame2 from "../../../images/frame2.png";
 import Image from "next/image";
 
-const slideEducation = [diplom, diplom, diplom];
+const slideEducation = [
+  diplom1,
+  diplom2,
+  diplom3,
+  diplom4,
+  diplo5,
+  diplom6,
+  diplom7,
+  diplom8,
+  diplom9,
+];
 
 const page = () => {
   return (
@@ -31,7 +49,7 @@ const page = () => {
       {/* Простая акцентная картинка, не громоздко */}
       <section className="w-full max-w-2xl py-12">
         <section className="w-full max-w-2xl py-12">
-          <div className="relative w-full h-[500px] rounded-xl overflow-hidden shadow-md">
+          <div className="relative w-full h-200 rounded-xl overflow-hidden shadow-md">
             <Image
               src={frame2}
               alt="Иллюстрация игрового подхода"

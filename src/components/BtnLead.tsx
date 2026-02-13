@@ -11,7 +11,7 @@ const isActive = useSelector((state: RootState)=> state.form.value)
   return (
     <>
       <button
-        className="bg-gray-300 p-2 rounded-2xl shadow-lg hover:scale-105 active:scale-95 transition-transform ease-in-out duration-500"
+        className="bg-gray-100 p-2 px-10 rounded-2xl shadow-lg hover:scale-105 active:scale-95 transition-transform ease-in-out duration-500"
         onClick={() => {
           dispatch(setIsActive(true));
         }}

@@ -26,11 +26,11 @@ const Slider = ({
 
   return (
     <section className="flex flex-col gap-12 items-center mt-20 px-4  ">
-      <h1 className="text-2xl md:text-4xl font-extrabold uppercase text-center">
+      <h1 className="whitespace-pre-line text-2xl md:text-4xl font-extrabold uppercase text-center">
         {header}
       </h1>
 
-      <div className="w-80 h-80 md:w-125 md:h-125 relative z-0 max-w-5xl">
+      <div className="w-80 h-auto md:w-125  relative z-0 max-w-5xl ">
         <Swiper
           effect={"coverflow"}
           grabCursor={true}

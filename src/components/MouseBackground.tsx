@@ -22,7 +22,7 @@ export default function MouseBackground() {
         pointer-events-none
         
         fixed inset-0 -z-10
-        bg-[radial-gradient(circle_at_var(--x)_var(--y),rgba(233,102,241,0.25),rgba(222,9,111,0.5)_70%)]
+        bg-[radial-gradient(circle_at_var(--x)_var(--y),rgba(255,162,0,0.63),rgba(233,87,162,0.63)_50%)]
       "
     />
   );
