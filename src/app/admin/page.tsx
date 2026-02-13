@@ -1,10 +1,6 @@
+import { checkAdmin } from "./action";
 import AdminForm from "./AdminForm";
 
-const page = () => {
-
-  return (
-   <AdminForm/>
-  );
-};
-
-export default page;
+export default function Page() {
+  return <AdminForm action={checkAdmin} />;
+}
