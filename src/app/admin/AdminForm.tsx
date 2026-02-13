@@ -29,6 +29,7 @@ export default function AdminForm({ action }: Props) {
     >
       <div className="flex flex-col relative">
         <input
+        className="py-3 px-5 border rounded-2xl"
           {...register("username", {
             required: "Обязательно поле",
             minLength: { value: 5, message: "Минимум 5 символов" },
@@ -40,6 +41,7 @@ export default function AdminForm({ action }: Props) {
 
       <div className="flex flex-col relative">
         <input
+        className="py-3 px-5 border rounded-2xl"
           {...register("password", {
             required: "Обязательно поле",
           })}
@@ -49,7 +51,7 @@ export default function AdminForm({ action }: Props) {
         <p>{passwordError}</p>
       </div>
 
-      <button type="submit">Авторизация</button>
+      <button className="border p-2 rounded-2xl bg-pink-300 active:scale-95 " type="submit">Авторизация</button>
     </form>
   );
 };

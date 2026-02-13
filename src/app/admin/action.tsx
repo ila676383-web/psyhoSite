@@ -12,7 +12,7 @@ export const checkAdmin = async (FormData: FormData) => {
     login !== process.env.LOGIN_ADMIN ||
     password !== process.env.PASSWORD_ADMIN
   ) {
-    throw new Error("Invalidate data");
+  return 
   }
 
   const token = jwt.sign({ role: "admin" }, process.env.JWT_SECRET!, {
