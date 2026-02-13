@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
 
@@ -13,17 +14,32 @@ type Props = {
   action: (formData: FormData) => void;
 };
 
-export default function AdminForm({ action }: Props) {
+export default function AdminForm() {
 
 
-  const { register, formState } = useForm<TAdminData>();
+  const { register, formState, handleSubmit } = useForm<TAdminData>();
+
+  const route = useRouter();
+
+  const onSubmit = async (data: TAdminData) => {
+    const res = await fetch("/admin/route", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+     body: JSON.stringify(data),
+    });
+ 
+
+    if (res.ok) {
+      route.push("/admin/panel");
+    }
+  };
 
   const usernameError = formState.errors["username"]?.message;
   const passwordError = formState.errors["password"]?.message;
 
   return (
    <form
-      action={action}
+      onSubmit={handleSubmit(onSubmit)}
       noValidate
       className="flex flex-col justify-center items-center gap-10 h-[90vh] mx-[5%]"
     >
