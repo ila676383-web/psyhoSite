@@ -3,7 +3,7 @@ import { ReviewApi } from "./review.types";
 import { Star } from "lucide-react";
 
 const ReviewsListMain = async () => {
-  const dataReviews: ReviewApi = await getReviews();
+  const dataReviews: ReviewApi[] = await getReviews();
 
   return (
     <ul className="max-w-xl mx-auto mt-8 space-y-10">
