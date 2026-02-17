@@ -70,60 +70,85 @@ const GameModalChange = ({
   };
 
   return (
-    <div className="absolute bg-white inset-0 m-auto h-150 w-100 rounded-2xl shadow-2xl flex flex-col items-center gap-5 p-6">
-      <h1 className="font-bold text-lg">Окно для изменения игры</h1>
-
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col items-start gap-3"
+    <div
+      className="
+        fixed inset-0 z-50
+        bg-black/50 backdrop-blur-sm
+        flex items-center justify-center
+        px-4
+      "
+      onClick={() => setEditingGameId(null)}
+    >
+      <div
+        className="
+          w-full max-w-lg
+          max-h-[90vh] overflow-y-auto
+          bg-white rounded-2xl shadow-2xl
+          p-6 md:p-8
+        "
+        onClick={(e) => e.stopPropagation()}
       >
-        <input
-          type="text"
-          placeholder="Заголовок"
-          className="border p-1 rounded-2xl font-bold"
-          {...register("name", { required: true })}
-        />
+        <h2 className="text-xl font-bold mb-6">Редактирование игры</h2>
 
-        <textarea
-          placeholder="Описание"
-          className="border p-1 rounded-2xl font-bold"
-          {...register("description", { required: true })}
-        />
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="grid gap-4"
+        >
+          <input
+            {...register("name", { required: true })}
+            placeholder="Название"
+            className="input"
+          />
 
-        <input
-          type="text"
-          placeholder="Категория"
-          className="border p-1 rounded-2xl font-bold"
-          {...register("category", { required: true })}
-        />
+          <input
+            {...register("category", { required: true })}
+            placeholder="Категория"
+            className="input"
+          />
 
-        <input
-          type="datetime-local"
-          className="border p-1 rounded-2xl font-bold"
-          {...register("time", { required: true })}
-        />
+          <input
+            type="datetime-local"
+            {...register("time", { required: true })}
+            className="input"
+          />
 
-        <input
-          type="file"
-          className="border p-1 rounded-2xl font-bold"
-          {...register("image")}
-        />
+          <input type="file" {...register("image")} className="input" />
 
-        <div className="flex gap-3">
-          <label className="flex items-center gap-2">
-            <input type="checkbox" {...register("hot")} />
-            Hot
-          </label>
-          <label className="flex items-center gap-2">
-            <input type="checkbox" {...register("new")} />
-            New
-          </label>
-        </div>
+          <textarea
+            {...register("description", { required: true })}
+            placeholder="Описание"
+            className="input min-h-[100px]"
+          />
 
-        <button className="bg-pink-300 p-3 rounded-2xl font-bold">
-          Save
-        </button>
-      </form>
+          <div className="flex gap-6 pt-2">
+            <label className="flex items-center gap-2 font-medium">
+              <input type="checkbox" {...register("hot")} />
+              Hot
+            </label>
+            <label className="flex items-center gap-2 font-medium">
+              <input type="checkbox" {...register("new")} />
+              New
+            </label>
+          </div>
+
+          <div className="flex gap-3 pt-4">
+            <button
+              type="submit"
+              className="flex-1 py-3 rounded-xl bg-pink-500 text-white font-semibold hover:opacity-90 transition"
+            >
+              Сохранить
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setEditingGameId(null)}
+              className="flex-1 py-3 rounded-xl bg-gray-200 hover:bg-gray-300 transition"
+            >
+              Отмена
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

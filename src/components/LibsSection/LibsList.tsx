@@ -37,75 +37,72 @@ const LibsList = ({
     setIsReload(false); // сбрасываем флаг перезагрузки после обновления списка игр
   }, [isReload]);
 
-  return (
-    <table className="w-full text-sm border-collapse">
-      <tbody className="divide-y">
-        {libsList?.map((lib) => (
-          <tr
-            key={lib.id}
-            className="hover:bg-pink-300 transition-colors ease-in-out duration-300 border-b-1 "
-          >
-            <td className="px-4 py-3 text-center bg-pink-300/70">
-              <img
-                loading="lazy"
-                src={`data:image/jpeg;base64,${lib.image}`}
-                alt={lib.name}
-                className="w-20 h-20 object-cover"
-              />
-            </td>
-            <td className="px-4 py-3 text-left bg-pink-200">{lib.name}</td>
-            <td className="px-4 py-3 text-left bg-pink-200">{lib.rating}</td>
-            <td className="px-4 py-3 text-left bg-pink-200">{lib.category}</td>
-            <td className="px-4 py-3 text-left bg-pink-300/70">
-              {lib.description}
-            </td>
-            <td className="px-4 py-3 text-left bg-pink-300/70">
-              {lib.long_description}
-            </td>
+return (
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {libsList.map((lib) => (
+        <div
+          key={lib.id}
+          className="bg-white rounded-2xl shadow p-4 flex flex-col gap-3"
+        >
+          {/* IMAGE */}
+          <img
+            loading="lazy"
+            src={`data:image/jpeg;base64,${lib.image}`}
+            alt={lib.name}
+            className="h-40 w-full object-cover rounded-xl"
+          />
 
-            <td className="px-4 py-3 bg-pink-200 2 h-full items-center">
-              <div className="flex gap-3">
-                <button
-                  onClick={async () => {
-                    await deleteLibs(lib.id);
-                    loadGames();
-                  }}
-                  className="p-2 rounded-2xl bg-pink-500/70 font-stretch-75% font-bold uppercase hover:scale-105 shadow-2xl hover:shadow-black active:scale-95 transition-all ease-in-out duration-300 "
-                >
-                  delete
-                </button>
-                {editingLibsId !== lib.id && (
-                  <button
-                    onClick={() => setEditingLibsId(lib.id)}
-                    className="p-2 rounded-2xl bg-pink-500/70 font-stretch-75% font-bold uppercase hover:scale-105 shadow-2xl hover:shadow-black active:scale-95 transition-all ease-in-out duration-300 "
-                  >
-                    change
-                  </button>
-                )}
-                {editingLibsId === lib.id && (
-                  <>
-                    <LibsModalChange
-                      lib={lib}
-                      id={lib.id}
-                      setEditingGameId={setEditingLibsId}
-                      setIsReload={setIsReload}
-                    />
-                    <button
-                      onClick={() => {
-                        setEditingLibsId(null);
-                      }}
-                      className="p-2 rounded-2xl bg-pink-500/70 font-stretch-75% font-bold uppercase hover:scale-105 shadow-2xl hover:shadow-black active:scale-95 transition-all ease-in-out duration-300 "
-                    >
-                      OK
-                    </button>
-                  </>
-                )}
-              </div>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+          {/* HEADER */}
+          <div className="flex justify-between items-start gap-2">
+            <h4 className="font-bold leading-tight">{lib.name}</h4>
+            <span className="text-xs text-gray-500 uppercase">
+              {lib.category}
+            </span>
+          </div>
+
+          {/* META */}
+          <div className="flex items-center gap-2 text-sm text-gray-500">
+            <span>⭐ {lib.rating}</span>
+          </div>
+
+          {/* DESCRIPTION */}
+          <p className="text-sm text-gray-600 line-clamp-2">
+            {lib.description}
+          </p>
+
+          <p className="text-xs text-gray-500 line-clamp-2">
+            {lib.long_description}
+          </p>
+
+          {/* ACTIONS */}
+          <div className="flex gap-2 mt-auto pt-3">
+            <button
+              onClick={() => deleteLibs(lib.id).then(loadGames)}
+              className="admin-btn bg-red-500 p-2 rounded-2xl text-white"
+            >
+              Delete
+            </button>
+
+            <button
+              onClick={() => setEditingLibsId(lib.id)}
+              className="admin-btn bg-gray-800 p-2 rounded-2xl text-white"
+            >
+              Edit
+            </button>
+          </div>
+
+          {/* MODAL */}
+          {editingLibsId === lib.id && (
+            <LibsModalChange
+              lib={lib}
+              id={lib.id}
+              setEditingGameId={setEditingLibsId}
+              setIsReload={setIsReload}
+            />
+          )}
+        </div>
+      ))}
+    </div>
   );
 };
 

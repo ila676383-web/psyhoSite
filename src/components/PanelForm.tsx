@@ -38,48 +38,35 @@ const PanelForm = ({setIsReload}: {setIsReload: React.Dispatch<boolean>}) => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col justify-center items-center gap-3 mb-5 "
-    >
-      <select {...register("category")}>
-        <option defaultChecked value="book">КНИГИ</option>
-        <option value="movie">ФИЛЬМЫ</option>
-      </select>
+   <form
+  onSubmit={handleSubmit(onSubmit)}
+  className="
+    bg-white rounded-2xl shadow
+    p-6 md:p-8
+    max-w-3xl
+  "
+>
+  <h3 className="text-xl font-bold mb-6">Добавить запись</h3>
 
-      <input
-        className="border w-2xl p-1 rounded-2xl font-bold font-stretch-90% "
-        type="file"
-        {...register("image")}
-      />
-      <input
-        className="border w-2xl p-1 rounded-2xl font-bold font-stretch-90% "
-        placeholder="Заголовок"
-        type="text"
-        {...register("name")}
-      />
-      <input
-        className="border w-2xl p-1 rounded-2xl font-bold font-stretch-90% "
-        placeholder="Короткое описание"
-        type="text"
-        {...register("description")}
-      />
-      <input
-        className="border w-2xl p-1 rounded-2xl font-bold font-stretch-90% "
-        placeholder="Длинное описание"
-        type="text"
-        {...register("long_description")}
-      />
-      <input
-        className="border w-2xl p-1 rounded-2xl font-bold font-stretch-90% "
-        placeholder="Рейтинг"
-        type="number"
-        {...register("rating", { valueAsNumber: true })}
-      />
-      <button className="p-2 rounded-2xl bg-pink-500/70 font-stretch-75% font-bold uppercase hover:scale-105 shadow-2xl hover:shadow-black active:scale-95 transition-all ease-in-out duration-300 ">
-        Создать
-      </button>
-    </form>
+  <div className="grid md:grid-cols-2 gap-4">
+    <select {...register("category")} className="input">
+      <option value="book">Книга</option>
+      <option value="movie">Фильм</option>
+    </select>
+
+    <input type="file" {...register("image")} className="input" />
+    <input placeholder="Название" {...register("name")} className="input" />
+    <input placeholder="Рейтинг" type="number" {...register("rating", { valueAsNumber: true })} className="input" />
+  </div>
+
+  <textarea placeholder="Короткое описание" {...register("description")} className="input mt-4" />
+  <textarea placeholder="Полное описание" {...register("long_description")} className="input mt-4" />
+
+  <button className="mt-6 px-6 py-3 bg-pink-500 text-white rounded-xl hover:scale-105 transition">
+    Создать
+  </button>
+</form>
+
   );
 };
 

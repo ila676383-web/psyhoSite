@@ -64,54 +64,70 @@ const GamesForm = ({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col items-center gap-3 mb-5"
+      className="
+        bg-white rounded-2xl shadow
+        p-6 md:p-8
+        max-w-3xl
+      "
     >
-      <input
-        type="text"
-        placeholder="Заголовок"
-        {...register("name", { required: true })}
-        className="border w-2xl p-1 rounded-2xl font-bold"
-      />
-      <input
-        type="file"
-        {...register("image", { required: true })}
-        className="border w-2xl p-1 rounded-2xl font-bold"
-      />
+      <h3 className="text-xl font-bold mb-6">Добавить игру</h3>
 
-      <input
-        type="text"
-        placeholder="Описание"
+      {/* GRID */}
+      <div className="grid md:grid-cols-2 gap-4">
+        <input
+          {...register("name", { required: true })}
+          placeholder="Название"
+          className="input"
+        />
+
+        <input
+          {...register("category", { required: true })}
+          placeholder="Категория"
+          className="input"
+        />
+
+        <input
+          type="datetime-local"
+          {...register("time", { required: true })}
+          className="input"
+        />
+
+        <input
+          type="file"
+          {...register("image", { required: true })}
+          className="input"
+        />
+      </div>
+
+      {/* DESCRIPTION */}
+      <textarea
         {...register("description", { required: true })}
-        className="border w-2xl p-1 rounded-2xl font-bold"
-      />
-      <input
-        type="text"
-        placeholder="Категория"
-        {...register("category", { required: true })}
-        className="border w-2xl p-1 rounded-2xl font-bold"
+        placeholder="Описание"
+        className="input mt-4 min-h-[100px]"
       />
 
-      <input
-        type="datetime-local"
-        placeholder="Время"
-        {...register("time", { required: true })}
-        className="border w-2xl p-1 rounded-2xl font-bold"
-      />
-
-      <div className="flex gap-3">
-        <label className="flex items-center gap-2">
+      {/* FLAGS */}
+      <div className="flex gap-6 mt-4">
+        <label className="flex items-center gap-2 font-medium">
           <input type="checkbox" {...register("hot")} />
           Hot
         </label>
-        <label className="flex items-center gap-2">
+        <label className="flex items-center gap-2 font-medium">
           <input type="checkbox" {...register("new")} />
           New
         </label>
       </div>
 
+      {/* ACTION */}
       <button
-        className="p-2 rounded-2xl bg-pink-500/70 font-bold uppercase
-                   hover:scale-105 active:scale-95 transition-all"
+        type="submit"
+        className="
+          mt-6 px-6 py-3
+          bg-pink-500 text-white
+          rounded-xl font-semibold
+          hover:opacity-90
+          transition
+        "
       >
         Создать
       </button>

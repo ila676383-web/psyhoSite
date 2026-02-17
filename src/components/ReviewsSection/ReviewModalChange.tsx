@@ -47,38 +47,75 @@ const ReviewModalChange = ({
   };
 
   return (
-    <div className="absolute bg-white p-30 inset-0 h-150 w-100 m-auto rounded-2xl shadow-2xl flex flex-col items-center gap-5">
-      <h1>Окно для изменения Отзывов</h1>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col items-start gap-3 mb-5"
+    <div
+      className="
+        fixed inset-0 z-50
+        bg-black/50 backdrop-blur-sm
+        flex items-center justify-center
+        px-4
+      "
+      onClick={() => setEditingReviewId(null)}
+    >
+      <div
+        className="
+          w-full max-w-lg
+          max-h-[90vh] overflow-y-auto
+          bg-white rounded-2xl shadow-2xl
+          p-6 md:p-8
+        "
+        onClick={(e) => e.stopPropagation()}
       >
-        <input
-          type="text"
-          placeholder="Заголовок"
-          className="border  p-1 rounded-2xl font-bold"
-          {...register("name")}
-        />
-        <textarea
-          placeholder="Описание"
-          className="border  p-1 rounded-2xl font-bold"
-          {...register("description")}
-        />
-        <input
-          type="number"
-          placeholder="Рейтинг"
-          className="border  p-1 rounded-2xl font-bold"
-          {...register("rate")}
-        />
-        <input
-          type="file"
-          placeholder="Изображение"
-          className="border  p-1 rounded-2xl font-bold"
-          {...register("image")}
-        />
+        <h2 className="text-xl font-bold mb-6">Редактирование отзыва</h2>
 
-        <button className="bg-pink-300 p-3 rounded-2xl ">Send</button>
-      </form>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="grid gap-4"
+        >
+          <input
+            {...register("name", { required: true })}
+            placeholder="Имя"
+            className="input"
+          />
+
+          <textarea
+            {...register("description", { required: true })}
+            placeholder="Текст отзыва"
+            className="input min-h-[120px]"
+          />
+
+          <input
+            type="number"
+            min={1}
+            max={5}
+            {...register("rate", { valueAsNumber: true })}
+            placeholder="Рейтинг (1–5)"
+            className="input"
+          />
+
+          <input
+            type="file"
+            {...register("image")}
+            className="input"
+          />
+
+          <div className="flex gap-3 pt-4">
+            <button
+              type="submit"
+              className="flex-1 py-3 rounded-xl bg-pink-500 text-white font-semibold hover:opacity-90 transition"
+            >
+              Сохранить
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setEditingReviewId(null)}
+              className="flex-1 py-3 rounded-xl bg-gray-200 hover:bg-gray-300 transition"
+            >
+              Отмена
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

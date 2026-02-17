@@ -30,69 +30,63 @@ const ReviewList = ({
   }, [isReload]);
 
   return (
-    <table className="w-full text-sm border-collapse">
-      {reviewList?.map((review) => (
-        <tbody key={review.id} className="divide-y">
-          <tr className="hover:bg-pink-300 transition-colors ease-in-out duration-300 border-b-1">
-            <td className="px-4 py-3 text-center bg-pink-300/70">
-              <img
-                className="h-24 w-24 object-cover border"
-                src={`data:image/*;base64,${review.image}`}
-                alt={review.name}
-              />
-            </td>
-            <td className="px-4 py-3 text-left bg-pink-200">{review.name}</td>
-            <td className="px-4 py-3 text-left bg-pink-300/70">
-              {review.description}
-            </td>
-            <td className="px-4 py-3 text-left bg-pink-300/70">
-              {review.rate}
-            </td>
+  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {reviewList.map((review) => (
+        <div
+          key={review.id}
+          className="bg-white rounded-2xl shadow p-4 flex flex-col gap-3"
+        >
+          {/* IMAGE */}
+          <img
+            src={`data:image/*;base64,${review.image}`}
+            alt={review.name}
+            className="h-40 w-full object-cover rounded-xl"
+          />
 
-            <td className="h-full px-4 py-3 text-left bg-pink-200 ">
-              <button
-                onClick={async () => {
-                  await deleteReviews(review.id);
-                  loadGames();
-                }}
-                className="p-2 mr-3 rounded-2xl bg-pink-500/70 font-stretch-75% font-bold uppercase hover:scale-105 shadow-2xl hover:shadow-black active:scale-95 transition-all ease-in-out duration-300 "
-              >
-                delete
-              </button>
-              {editingReviewId !== review.id && (
-                <button
-                  onClick={() => setEditingReviewId(review.id)}
-                  className="p-2 rounded-2xl bg-pink-500/70 font-stretch-75% font-bold uppercase hover:scale-105 shadow-2xl hover:shadow-black active:scale-95 transition-all ease-in-out duration-300 "
-                >
-                  change
-                </button>
-              )}
-              {editingReviewId === review.id && (
-                <>
-                  {
-                    <ReviewModalChange
-                      review={review}
-                      id={review.id}
-                      setEditingReviewId={setEditingReviewId}
-                      setIsReload={setIsReload}
-                    />
-                  }
-                  <button
-                    onClick={() => {
-                      setEditingReviewId(null);
-                    }}
-                    className="p-2 rounded-2xl bg-pink-500/70 font-stretch-75% font-bold uppercase hover:scale-105 shadow-2xl hover:shadow-black active:scale-95 transition-all ease-in-out duration-300 "
-                  >
-                    OK
-                  </button>
-                </>
-              )}
-            </td>
-          </tr>
-        </tbody>
+          {/* HEADER */}
+          <div className="flex justify-between items-start gap-2">
+            <h4 className="font-bold leading-tight">{review.name}</h4>
+            <span className="text-sm text-gray-500">
+              ⭐ {review.rate}
+            </span>
+          </div>
+
+          {/* DESCRIPTION */}
+          <p className="text-sm text-gray-600 line-clamp-3">
+            {review.description}
+          </p>
+
+          {/* ACTIONS */}
+          <div className="flex gap-2 mt-auto pt-3">
+            <button
+              onClick={() => deleteReviews(review.id).then(loadGames)}
+              className="admin-btn bg-red-500  p-2 rounded-2xl text-white"
+            >
+              Delete
+            </button>
+
+            <button
+              onClick={() => setEditingReviewId(review.id)}
+              className="admin-btn bg-gray-800  p-2 rounded-2xl text-white"
+            >
+              Edit
+            </button>
+          </div>
+
+          {/* MODAL */}
+          {editingReviewId === review.id && (
+            <ReviewModalChange
+              review={review}
+              id={review.id}
+              setEditingReviewId={setEditingReviewId}
+              setIsReload={setIsReload}
+            />
+          )}
+        </div>
       ))}
-    </table>
+    </div>
   );
 };
+
 
 export default ReviewList;
