@@ -2,8 +2,10 @@
 
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
-import { ReviewCreateApi } from "./ReviewList";
+
 import { changeReviews } from "@/app/action/ReviewAction";
+import { ReviewApi, ReviewCreateApi } from "./review.types";
+import { fileToBase64 } from "@/app/lib/fileToBase64";
 
 const ReviewModalChange = ({
   setEditingReviewId,
@@ -14,7 +16,7 @@ const ReviewModalChange = ({
   setEditingReviewId: React.Dispatch<number | null>;
   id: number;
   setIsReload: React.Dispatch<boolean>;
-  review: ReviewCreateApi;
+  review: ReviewApi;
 }) => {
   const { register, handleSubmit, reset } = useForm<ReviewCreateApi>({
     defaultValues: {
@@ -32,7 +34,14 @@ const ReviewModalChange = ({
   }, [review, reset]);
 
   const onSubmit = async (data: ReviewCreateApi) => {
-    await changeReviews(id, data);
+    const file = data.image[0];
+    if (!file) {
+      alert("Выберите изображение");
+      return;
+    }
+    const base64 = await fileToBase64(file);
+
+    await changeReviews(id, { ...data, image: base64 });
     setEditingReviewId(null);
     setIsReload(true); // обновляем список игр после изменения
   };
@@ -60,6 +69,12 @@ const ReviewModalChange = ({
           placeholder="Рейтинг"
           className="border  p-1 rounded-2xl font-bold"
           {...register("rate")}
+        />
+        <input
+          type="file"
+          placeholder="Изображение"
+          className="border  p-1 rounded-2xl font-bold"
+          {...register("image")}
         />
 
         <button className="bg-pink-300 p-3 rounded-2xl ">Send</button>

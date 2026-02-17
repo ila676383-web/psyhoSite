@@ -26,7 +26,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/games" className="hover:opacity-100">
+                <Link href="/game" className="hover:opacity-100">
                   Игры
                 </Link>
               </li>

@@ -46,29 +46,24 @@ const LibsModalChange = ({
     });
   }, [lib, reset]);
 
- const onSubmit = async (data: LibEditForm) => {
-  let imageBase64: string | undefined;
+  const onSubmit = async (data: LibEditForm) => {
+    let imageBase64: string | undefined;
+    
+    if (data.image?.[0]) {
+      imageBase64 = await fileToBase64(data.image[0]);
+    }
+    await changeLibs(id, {
+      name: data.name,
+      description: data.description,
+      long_description: data.long_description,
+      category: data.category,
+      rating: data.rating,
+      ...(imageBase64 && { image: imageBase64 }),
+    });
 
-  const file = data.image?.[0];
-
-  // 🔥 КРИТИЧЕСКАЯ ПРОВЕРКА
-  if (file instanceof File) {
-    imageBase64 = await fileToBase64(file);
-  }
-
-  await changeLibs(id, {
-    name: data.name,
-    description: data.description,
-    long_description: data.long_description,
-    category: data.category,
-    rating: data.rating,
-    ...(imageBase64 && { image: imageBase64 }),
-  });
-
-  setEditingGameId(null);
-  setIsReload(true);
-};
-
+    setEditingGameId(null);
+    setIsReload(true); // обновляем список игр после изменения
+  };
 
   return (
     <div className="absolute bg-white p-30 inset-0 h-150 w-100 m-auto rounded-2xl shadow-2xl flex flex-col items-center gap-5">

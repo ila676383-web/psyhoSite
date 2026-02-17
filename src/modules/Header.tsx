@@ -18,7 +18,7 @@ const Header = () => {
   const [isNav, setIsNav] = useState(false);
 
   return (
-    <header className="w-screen p-5 mb-20  md:px-15 2xl:px-40 flex items-center justify-between bg-transparent">
+    <header className="w-full p-5 mb-20  md:px-15 2xl:px-40 flex items-center justify-between bg-transparent">
       {/* Logo */}
       <div className="flex items-center gap-2">
         <Image

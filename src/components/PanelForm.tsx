@@ -2,7 +2,6 @@
 
 import { createLib } from "@/app/action/LibsAction";
 import { fileToBase64 } from "@/app/lib/fileToBase64";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 type LibsFormData = {

@@ -12,8 +12,7 @@ export type GameApi = {
   time: string;
   hot: boolean;
   new: boolean;
-  created_at: string;
-  updated_at: string;
+  image: string;
 };
 
 const GamesList = ({
@@ -41,10 +40,20 @@ const GamesList = ({
 
   return (
     <table className="w-full text-sm border-collapse">
-      {gamesList?.map((game) => (
-        <tbody key={game.id} className="divide-y">
-          <tr className="hover:bg-pink-300 transition-colors ease-in-out duration-300 border-b-1">
-            <td className="px-4 py-3 text-center bg-pink-300/70">img</td>
+      <tbody className="divide-y">
+        {gamesList?.map((game) => (
+          <tr
+            key={game.id}
+            className="hover:bg-pink-300 transition-colors ease-in-out duration-300 border-b-1"
+          >
+            <td className="px-4 py-3 text-center bg-pink-300/70">
+              <img
+                src={`data:image/*;base64,${game.image}`}
+                alt={game.name}
+                className="w-20 h-20 object-cover "
+              />
+            </td>
+
             <td className="px-4 py-3 text-left bg-pink-200">{game.name}</td>
             <td className="px-4 py-3 text-left bg-pink-300/70">
               {game.description}
@@ -54,13 +63,13 @@ const GamesList = ({
               hot - {game.hot ? "да" : "нет"} <br />
               new - {game.new ? "да" : "нет"}
             </td>
-            <td className="px-4 py-3 text-left bg-pink-200 flex gap-2">
+            <td className="px-4 py-3 text-left bg-pink-200 ">
               <button
-                onClick={() => {
-                  deleteGames(game.id);
+                onClick={async () => {
+                  await deleteGames(game.id);
                   loadGames();
                 }}
-                className="p-2 rounded-2xl bg-pink-500/70 font-stretch-75% font-bold uppercase hover:scale-105 shadow-2xl hover:shadow-black active:scale-95 transition-all ease-in-out duration-300 "
+                className="p-2 rounded-2xl mr-3 bg-pink-500/70 font-stretch-75% font-bold uppercase hover:scale-105 shadow-2xl hover:shadow-black active:scale-95 transition-all ease-in-out duration-300 "
               >
                 delete
               </button>
@@ -92,8 +101,8 @@ const GamesList = ({
               )}
             </td>
           </tr>
-        </tbody>
-      ))}
+        ))}
+      </tbody>
     </table>
   );
 };

@@ -1,16 +1,16 @@
-'use server'
+"use server";
+
+import { revalidateTag } from "next/cache";
 
 const API_URL = process.env.API_URL;
 
-
-
 export const createLib = async (data: {
   name: string;
-  category: 'book' | 'movie' ;
-  description: string; 
+  category: "book" | "movie";
+  description: string;
   long_description: string;
   rating: number;
-  image: string // base64
+  image: string; // base64
 }) => {
   const res = await fetch(`${API_URL}/api/libs`, {
     method: "POST",
@@ -22,30 +22,29 @@ export const createLib = async (data: {
     },
   });
   if (!res.ok) {
-     const text = await res.text(); // 🔥 КЛЮЧЕВО
+    const text = await res.text();
     console.error("BACKEND RESPONSE:", text);
     throw new Error(text);
   }
+  revalidateTag("libs", "default");
+
   return await res.json();
 };
 
-
-
-export const getLibs= async () => {
-  const res = await fetch(`${API_URL}/api/libs`);
+export const getLibs = async () => {
+  const res = await fetch(`${API_URL}/api/libs`, {
+    next: { tags: ["libs"] },
+  });
   if (!res.ok) {
     throw new Error("Ошибка при получении библиотеки");
   }
   return await res.json();
 };
 
-
-
-
-
 export const deleteLibs = async (id: number) => {
   const res = await fetch(`${API_URL}/api/libs/${id}`, {
     method: "DELETE",
+    cache: "no-store",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${process.env.API_TOKEN_BASE}`,
@@ -54,22 +53,24 @@ export const deleteLibs = async (id: number) => {
   if (!res.ok) {
     throw new Error("Ошибка при удалении библиотки");
   }
+  revalidateTag("libs", "default");
   return await res.json();
 };
 
 export const changeLibs = async (
   id: number,
   data: {
-  name: string;
-  category: 'book' | 'movie' ;
-  description: string; 
-  long_description: string;
-  rating: number;
-  image?: string // base64
+    name: string;
+    category: "book" | "movie";
+    description: string;
+    long_description: string;
+    rating: number;
+    image?: string; // base64
   },
 ) => {
   const res = await fetch(`${API_URL}/api/libs/${id}`, {
     method: "PATCH",
+    cache: "no-store",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${process.env.API_TOKEN_BASE}`,
@@ -79,5 +80,6 @@ export const changeLibs = async (
   if (!res.ok) {
     throw new Error("Ошибка при изменение библиотки");
   }
+  revalidateTag("libs", "default");
   return await res.json();
 };

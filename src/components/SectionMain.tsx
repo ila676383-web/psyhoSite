@@ -4,114 +4,105 @@ import { StaticImageData } from "next/dist/shared/lib/get-img-props";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-const SectionMain = ({
-  frame,
-  position,
-  head,
-  text,
-}: {
+type Props = {
   frame: string | StaticImageData;
-  position: string;
+  position: "l" | "r" | "c";
   head: string;
   text: string;
-}) => {
-  const [isVisible, setIsVisible] = useState<boolean>(false);
-  const section = useRef<HTMLElement | null>(null);
+};
+
+const SectionMain = ({ frame, position, head, text }: Props) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (!section.current) return;
+    if (!sectionRef.current) return;
 
-      const sectionTop = section.current.offsetTop;
-      const scrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setIsVisible(true);
+      },
+      { threshold: 0.2 }
+    );
 
-      if (scrollY + windowHeight > sectionTop) {
-        setIsVisible(true);
-      }
-    };
+    observer.observe(sectionRef.current);
 
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  useEffect(() => {
-    window.scrollY > 0 && window.scrollTo({ top: window.scrollY - 1, behavior: "instant" });
+    return () => observer.disconnect();
   }, []);
 
   return (
     <section
-      ref={section}
+      ref={sectionRef}
       className={`
-      flex flex-col md:flex-row
-      items-center md:justify-between
-      2xl:max-w-400
-      gap-10
-      px-3 md:px-12 xl:px-40
-      py-8
-      mx-auto
-      -z-1
-       opacity-0 transition-opacity duration-2000 ease-in-out ${isVisible && "opacity-100 "}
-`}
+        max-w-7xl mx-auto
+        px-4 md:px-8 xl:px-16
+        py-16
+        flex flex-col md:flex-row
+        items-center justify-between
+        gap-12
+        transition-opacity duration-1000
+        ${isVisible ? "opacity-100" : "opacity-0"}
+      `}
     >
-      {position === "r" && (
-        <>
-          <div className="w-full md:w-[45%] flex justify-center">
-            <Image
-              className="shadow-lg rounded-2xl w-full max-w-[320px] md:max-w-[350px]"
-              src={frame}
-              width={350}
-              height={350}
-              alt={head}
-            />
-          </div>
-
-          <div className="w-full md:w-[45%] flex flex-col gap-5 text-left md:text-left">
-            <h2 className="text-2xl md:text-4xl font-bold">{head}</h2>
-            <p className="text-sm md:text-base">{text}</p>
-          </div>
-        </>
-      )}
+      {/* IMAGE LEFT */}
       {position === "l" && (
         <>
-          <div className="w-full md:w-[45%] flex flex-col gap-5 text-left md:text-left">
-            <h2 className="text-2xl md:text-4xl font-bold text-pink-300">
-              {head}
-            </h2>
-            <p className="text-sm md:text-base">{text}</p>
-          </div>
-
-          <div className="w-full md:w-[45%] flex justify-center">
-            <Image
-              className="shadow-lg rounded-2xl w-full max-w-[320px] md:max-w-[350px]"
-              src={frame}
-              width={350}
-              height={350}
-              alt={head}
-            />
-          </div>
+          <Content head={head} text={text} />
+          <ImageBlock frame={frame} alt={head} />
         </>
       )}
+
+      {/* IMAGE RIGHT */}
+      {position === "r" && (
+        <>
+          <ImageBlock frame={frame} alt={head} />
+          <Content head={head} text={text} />
+        </>
+      )}
+
       {/* CENTER */}
       {position === "c" && (
-        <div className="flex w-full flex-col items-center gap-6 text-center ">
+        <div className="flex w-full flex-col items-center text-center gap-6">
           <Image
-            className="shadow-lg rounded-2xl w-full max-w-[300px] md:max-w-[400px]"
             src={frame}
+            alt={head}
             width={400}
             height={400}
-            alt={head}
+            className="rounded-2xl shadow-lg w-full max-w-[380px]"
           />
-          <h2 className="text-2xl text-pink-300 md:text-4xl font-bold">
+          <h2 className="text-2xl md:text-4xl font-bold text-pink-300">
             {head}
           </h2>
-          <p className="max-w-xl">{text}</p>
+          <p className="max-w-xl text-sm md:text-base">{text}</p>
         </div>
       )}
     </section>
   );
 };
+
+const Content = ({ head, text }: { head: string; text: string }) => (
+  <div className="w-full md:w-1/2 flex flex-col gap-5">
+    <h2 className="text-2xl md:text-4xl font-bold">{head}</h2>
+    <p className="text-sm md:text-base leading-relaxed">{text}</p>
+  </div>
+);
+
+const ImageBlock = ({
+  frame,
+  alt,
+}: {
+  frame: string | StaticImageData;
+  alt: string;
+}) => (
+  <div className="w-full md:w-1/2 flex justify-center">
+    <Image
+      src={frame}
+      alt={alt}
+      width={350}
+      height={350}
+      className="rounded-2xl shadow-lg w-full max-w-[350px]"
+    />
+  </div>
+);
 
 export default SectionMain;

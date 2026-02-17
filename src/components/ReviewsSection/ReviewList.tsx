@@ -3,25 +3,8 @@
 import { deleteReviews, getReviews } from "@/app/action/ReviewAction";
 import { useEffect, useState } from "react";
 import ReviewModalChange from "./ReviewModalChange";
+import { ReviewApi } from "./review.types";
 
-export type ReviewApi = {
-  id: number;
-  name: string;
-  description: string;
-  rate: number
-};
-export type ReviewCreateApi = {
-  name: string;
-  description: string;
-  rate: number;
-  
-};
-export type ReviewCreateMainApi = {
-  name: string;
-  description: string;
-  rate: number;
-    lib_id: number;
-};
 
 const ReviewList = ({
   setIsReload,
@@ -51,7 +34,13 @@ const ReviewList = ({
       {reviewList?.map((review) => (
         <tbody key={review.id} className="divide-y">
           <tr className="hover:bg-pink-300 transition-colors ease-in-out duration-300 border-b-1">
-            <td className="px-4 py-3 text-center bg-pink-300/70">img</td>
+            <td className="px-4 py-3 text-center bg-pink-300/70">
+              <img
+                className="h-24 w-24 object-cover border"
+                src={`data:image/*;base64,${review.image}`}
+                alt={review.name}
+              />
+            </td>
             <td className="px-4 py-3 text-left bg-pink-200">{review.name}</td>
             <td className="px-4 py-3 text-left bg-pink-300/70">
               {review.description}
@@ -60,13 +49,13 @@ const ReviewList = ({
               {review.rate}
             </td>
 
-            <td className="px-4 py-3 text-left bg-pink-200 flex gap-2">
+            <td className="h-full px-4 py-3 text-left bg-pink-200 ">
               <button
-                onClick={() => {
-                  deleteReviews(review.id);
+                onClick={async () => {
+                  await deleteReviews(review.id);
                   loadGames();
                 }}
-                className="p-2 rounded-2xl bg-pink-500/70 font-stretch-75% font-bold uppercase hover:scale-105 shadow-2xl hover:shadow-black active:scale-95 transition-all ease-in-out duration-300 "
+                className="p-2 mr-3 rounded-2xl bg-pink-500/70 font-stretch-75% font-bold uppercase hover:scale-105 shadow-2xl hover:shadow-black active:scale-95 transition-all ease-in-out duration-300 "
               >
                 delete
               </button>

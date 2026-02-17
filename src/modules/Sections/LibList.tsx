@@ -20,6 +20,8 @@ const LibList = () => {
       .finally(() => setLoading(false));
   }, []);
 
+  
+
   // получаем категорию из редакса, чтобы отображать карточки в зависимости от выбранной категории (книги или фильмы)
   const category = useSelector((state: RootState) => state.category.category);
 

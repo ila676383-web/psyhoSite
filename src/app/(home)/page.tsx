@@ -23,6 +23,7 @@ import office5 from "@/images/office5.png";
 import SectionLead from "@/components/SectionLead";
 import Image from "next/image";
 import BtnFormBack from "@/components/BtnFormBack";
+import ReviewsListMain from "@/components/ReviewsSection/ReviewsListMain";
 
 const slideEducation = [
   diplom1,
@@ -38,7 +39,7 @@ const slideEducation = [
 const slideOffice = [office1, office2, office3, office4, office5];
 const page = () => {
   return (
-    <main className="relative w-[80%] mx-auto flex flex-col gap-20 ">
+    <main className="relative max-w-7xl mx-auto px-4 md:px-8 xl:px-16 py-20 flex flex-col gap-28 font-sans text-gray-800">
       <SectionLead
         head="Психолог онлайн — глубинная работа с мышлением, эмоциями и жизненными сценариями"
         text="Помогаю взрослым людям выйти из кризисов, наладить отношения, повысить уверенность в себе и принять устойчивые решения с помощью психологических консультаций и трансформационных игр."
@@ -51,9 +52,9 @@ const page = () => {
       <section
         className="flex flex-col md:flex-row
       items-center md:justify-between
-      2xl:max-w-3/4
+      2xl:max-w-/4
       gap-10
-      px-3 md:px-12 xl:px-40
+      px-3 md:px-12 xl:px-16
       py-8
       mx-auto
       -z-1"
@@ -66,11 +67,11 @@ const page = () => {
           <ul className="flex flex-col gap-4">
             <li className="flex flex-col md:flex-row justify-between items-start border-b border-gray-300 pb-4">
               <h3 className="text-2xl">Индивидуальная консультация</h3>
-              <p>5 000 ₽</p>
+              <p>от 5 000 ₽</p>
             </li>
             <li className="flex flex-col md:flex-row justify-between items-start border-b border-gray-300 pb-4">
               <h3 className="text-2xl">Семейная консультация</h3>
-              <p>5 000 ₽</p>
+              <p>от 5 000 ₽</p>
             </li>
             <li className="flex flex-col md:flex-row justify-between items-start border-b border-gray-300 pb-4">
               <h3 className="text-2xl">Трансформационная игра в группе</h3>
@@ -85,7 +86,7 @@ const page = () => {
             </li>
           </ul>
         </div>
-        <div className="w-full md:w-[45%] flex justify-center">
+        <div className="w-full md:w-[45%] flex justify-center md:justify-end">
           <Image
             className="shadow-lg rounded-2xl w-full max-w-[320px] md:max-w-[350px]"
             src={frame1}
@@ -128,6 +129,24 @@ const page = () => {
         }
       />
       <FormBack />
+
+      <section className="w-full  py-20  flex flex-col gap-12 justify-center items-center">
+        <div className="max-w-7xl  px-4 md:px-8 xl:px-16">
+          <div className="max-w-3xl mb-12 mx-auto text-center">
+            <h2 className="text-3xl mb-6 tracking-wide">
+              Отзывы клиентов
+            </h2>
+            <p className="text-lg leading-relaxed text-gray-600">
+              Несколько коротких, но искренних отзывов от клиентов, которые
+              подчеркнут эффективность моего подхода и результаты, которых они
+              достигли.
+            </p>
+          </div>
+
+          <ReviewsListMain />
+        </div>
+      </section>
+
       <Slider
         header={"Сертификаты и образование"}
         slideEducation={slideEducation}

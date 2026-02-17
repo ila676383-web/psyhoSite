@@ -1,5 +1,7 @@
 "use server";
 
+import { revalidateTag } from "next/cache";
+
 const API_URL = process.env.API_URL;
 
 
@@ -9,6 +11,7 @@ export const createReview = async (data: {
   rate: number;
   description: string; 
   lib_id: number;
+  image: string;
 }) => {
   const res = await fetch(`${API_URL}/api/reviews`, {
     method: "POST",
@@ -20,8 +23,10 @@ export const createReview = async (data: {
     },
   });
   if (!res.ok) {
-    throw new Error("Ошибка при создании отзыва");
+   const text = await res.text(); 
+    throw new Error(`Ошибка при создании отзыва: ${text}`);
   }
+  revalidateTag("reviews", "default");
   return await res.json();
 };
 
@@ -29,9 +34,11 @@ export const createReview = async (data: {
 
 
 export const getReviews = async () => {
-  const res = await fetch(`${API_URL}/api/reviews`);
+  const res = await fetch(`${API_URL}/api/reviews`,{
+    next: {tags: ["reviews"]}
+  });
   if (!res.ok) {
-    throw new Error("Оотзывар");
+    throw new Error("Ошибка при получении отзывов");
   }
   return await res.json();
 };
@@ -39,6 +46,7 @@ export const getReviews = async () => {
 export const deleteReviews = async (id: number) => {
   const res = await fetch(`${API_URL}/api/reviews/${id}`, {
     method: "DELETE",
+        cache: "no-store",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${process.env.API_TOKEN_BASE}`,
@@ -47,8 +55,11 @@ export const deleteReviews = async (id: number) => {
   if (!res.ok) {
     throw new Error("Ошибка при удалении отзыва");
   }
+  revalidateTag("reviews", "default");
   return await res.json();
 };
+
+
 
 export const changeReviews = async (
   id: number,
@@ -56,10 +67,12 @@ export const changeReviews = async (
     name: string;
     description: string;
     rate: number;
+    image: string;
   },
 ) => {
   const res = await fetch(`${API_URL}/api/reviews/${id}`, {
     method: "PATCH",
+    cache: "no-store",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${process.env.API_TOKEN_BASE}`,
@@ -69,5 +82,6 @@ export const changeReviews = async (
   if (!res.ok) {
     throw new Error("Ошибка при изменение отзыва");
   }
+  revalidateTag("reviews", "default");
   return await res.json();
 };
