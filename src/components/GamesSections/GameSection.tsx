@@ -3,7 +3,7 @@ import { GameApi } from "./GamesList";
 import BtnGame from "./BtnGame";
 
 const GameSection = async () => {
-  const data = await getGames();
+  const data: GameApi[] = await getGames();
 
   return (
     <section className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10 justify-items-center max-w-screen">
@@ -24,7 +24,6 @@ const GameSection = async () => {
               <h2>{game.name}</h2>
               <p>{game.description}</p>
               <BtnGame game={game} />
-            
             </div>
           );
         })}
