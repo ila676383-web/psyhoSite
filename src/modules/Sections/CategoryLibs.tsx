@@ -13,13 +13,13 @@ const CategoryLibs = () => {
         onClick={() => dispatch(setCategory("books"))}
         className="text-2xl hover:scale-105 active:scale-95 transition-transform duration-200"
       >
-        Book
+        Книги
       </button>
       <button
         onClick={() => dispatch(setCategory("movies"))}
         className="text-2xl hover:scale-105 active:scale-95 transition-transform duration-200"
       >
-        Movies
+        Фильмы
       </button>
     </section>
   );

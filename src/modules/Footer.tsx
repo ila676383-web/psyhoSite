@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="relative w-full mt-40 [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%)]"> 
+    <footer className="relative w-full mt-40 [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%)]">
       <MouseBackground />
 
       {/* затемняющая подложка */}
@@ -26,7 +26,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/game" className="hover:opacity-100">
+                <Link href="/games" className="hover:opacity-100">
                   Игры
                 </Link>
               </li>

@@ -15,7 +15,7 @@ const BtnGameNew = ({ gameId }: { gameId: number }) => {
         Подробнее
       </button>
 
-      {open && <GameModal gameId={gameId} onClose={() => setOpen(false)} />}
+      {/* {open && <GameModal gameId={gameId} onClose={() => setOpen(false)} />} */}
     </>
   );
 };
