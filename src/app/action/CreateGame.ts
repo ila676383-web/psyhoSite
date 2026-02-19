@@ -4,7 +4,6 @@ import { revalidateTag } from "next/cache";
 
 const API_URL = process.env.API_URL;
 
-
 export const createGame = async (data: {
   category: string;
   name: string;
@@ -33,15 +32,21 @@ export const createGame = async (data: {
   return await res.json();
 };
 
-
-
-
 export const getGames = async () => {
   const res = await fetch(`${API_URL}/api/game-schedules`, {
     next: { tags: ["games"] },
   });
   if (!res.ok) {
     throw new Error("Ошибка при получении игр");
+  }
+  return await res.json();
+};
+export const getGameById = async (id: number) => {
+  const res = await fetch(`${API_URL}/api/game-schedules/${id}`, {
+    next: { tags: ["games"] },
+  });
+  if (!res.ok) {
+    throw new Error("Ошибка при получении игры");
   }
   return await res.json();
 };
