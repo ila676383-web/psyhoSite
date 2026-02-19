@@ -17,7 +17,7 @@ const GameSliderMain = ({
   }[];
 }) => {
   return (
-     <div className="w-full pb-10 ">
+     <div className="w-full pb-10 p-5">
       <Swiper
         modules={[Autoplay, FreeMode]}
         slidesPerView={1.2}
@@ -43,7 +43,7 @@ const GameSliderMain = ({
         .map((game) => (
           <SwiperSlide key={game.id}>
             <div
-              className="
+              className=" mt-5
                 h-full
                 rounded-2xl
                 bg-white/5
