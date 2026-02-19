@@ -1,6 +1,12 @@
 "use client"
-import Stair from "@/components/animate/Stair"
+
 import SectionLead from "@/components/SectionLead"
+import dynamic from "next/dynamic";
+
+const Stair = dynamic(
+  () => import("@/components/animate/Stair"),
+  { ssr: false }
+);
 
 const LeadStair = () => {
   return (
