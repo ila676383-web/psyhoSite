@@ -1,7 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Spline from "@splinetool/react-spline";
+
+import dynamic from "next/dynamic";
+const Spline = dynamic(
+  () => import("@splinetool/react-spline"),
+  { ssr: false }
+);
+
+
 
 export default function Stair() {
   const [ready, setReady] = useState(false);
@@ -10,9 +17,7 @@ export default function Stair() {
     // 1. защита от SSR (на всякий случай)
     if (typeof window === "undefined") return;
 
-    // 2. только десктоп
-    //if (window.innerWidth < 1024) return;
-
+  
     // 3. проверка WebGL
     const canvas = document.createElement("canvas");
     const gl =
