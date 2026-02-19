@@ -52,7 +52,7 @@ const GameModalMain = ({
         </button>
 
         {/* Image */}
-        <div className="relative w-full h-64 md:h-120 bg-gray-100">
+        <div className="relative w-full h-64 md:h-80 bg-gray-100">
           <img
             loading="lazy"
             src={`data:image/jpeg;base64,${game.image}`}

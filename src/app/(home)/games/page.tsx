@@ -2,6 +2,7 @@ import LeadStair from "@/modules/Sections/LeadStair";
 
 import GameSection from "@/components/GamesSections/GameSection";
 import BtnFormBack from "@/components/BtnFormBack";
+import BtnContact from "@/components/BtnContact";
 const page = () => {
   return (
     <main
@@ -10,6 +11,7 @@ const page = () => {
       <LeadStair />
       <GameSection/>
       <BtnFormBack />
+       <BtnContact />
     </main>
   );
 };

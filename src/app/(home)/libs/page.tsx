@@ -1,3 +1,4 @@
+import BtnContact from "@/components/BtnContact";
 import BtnFormBack from "@/components/BtnFormBack";
 import CategoryLibs from "@/modules/Sections/CategoryLibs";
 import LibList from "@/modules/Sections/LibList";
@@ -9,6 +10,7 @@ const page = () => {
       <CategoryLibs />
       <LibList />
       <BtnFormBack />
+       <BtnContact />
     </main>
   );
 };
