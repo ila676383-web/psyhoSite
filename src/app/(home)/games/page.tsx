@@ -7,7 +7,7 @@ const page = () => {
     <main
       className="container w-[80%] mx-auto min-h-screen flex flex-col jus gap-20 "
     >
-      {/* <LeadStair /> */}
+      <LeadStair />
       <GameLoad/>
       <BtnFormBack />
       <BtnContact />
