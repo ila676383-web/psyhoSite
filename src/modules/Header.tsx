@@ -9,7 +9,7 @@ import { useState } from "react";
 const navigateHeader = [
   { name: "Главная", link: "/" },
   { name: "Обо мне", link: "/about" },
-  { name: "Игры", link: "/games" },
+  { name: "Т-Игры", link: "/games" },
   { name: "Библиотека", link: "/libs" },
 ];
 

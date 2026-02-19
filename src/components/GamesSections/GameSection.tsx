@@ -22,7 +22,7 @@ const GameSection = async () => {
                 className="w-150 h-100 object-cover rounded-2xl "
               />
               <h2>{game.name}</h2>
-              <p>{game.description}</p>
+              <p>{game.description.slice(0, 35)}...</p>
               <BtnGame game={game} />
             </div>
           );

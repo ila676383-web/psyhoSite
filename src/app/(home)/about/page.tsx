@@ -65,12 +65,10 @@ const page = () => {
         </section>
       </section>
 
-     <section className="w-full py-20  flex flex-col gap-12 justify-center items-center">
+      <section className="w-full py-20  flex flex-col gap-12 justify-center items-center">
         <div className="max-w-7xl  px-4 md:px-8 xl:px-16">
           <div className="max-w-3xl mb-12 mx-auto text-center">
-            <h2 className="text-3xl mb-6 tracking-wide">
-              Отзывы клиентов
-            </h2>
+            <h2 className="text-3xl mb-6 tracking-wide">Отзывы клиентов</h2>
             <p className="text-lg leading-relaxed text-gray-600">
               Несколько коротких, но искренних отзывов от клиентов, которые
               подчеркнут эффективность моего подхода и результаты, которых они
@@ -106,7 +104,6 @@ const page = () => {
           <li>Поддержка и сопровождение на протяжении всего процесса</li>
         </ul>
       </section>
-
 
       <BtnFormBack />
     </main>

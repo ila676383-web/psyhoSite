@@ -6,38 +6,74 @@ const GameModalMain = ({
   setIsModal,
   game,
 }: {
-  setIsModal: React.Dispatch<boolean>;
+  setIsModal: React.Dispatch<React.SetStateAction<boolean>>;
   game: GameApi;
 }) => {
   return (
     <div
-      onClick={(e) => {
-        e.preventDefault();
-        setIsModal(false);
-      }}
-      className=" fixed top-0 left-0 w-screen h-screen bg-black/50 flex items-center justify-center z-50  "
+      onClick={() => setIsModal(false)}
+      className="
+        fixed inset-0 z-50
+        flex items-center justify-center
+        bg-black/70 backdrop-blur-sm
+        px-4
+      "
     >
+      {/* Modal */}
       <div
-        onClick={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-        }}
-        className="relative w-full max-w-2xl max-h-[80vh] bg-white rounded-2xl shadow-lg overflow-y-auto p-6 flex flex-col items-start gap-4"
+        onClick={(e) => e.stopPropagation()}
+        className="
+          relative
+          w-full max-w-3xl
+          max-h-1/2
+          overflow-auto
+          rounded-3xl
+          bg-white
+          shadow-[0_30px_100px_rgba(0,0,0,0.35)]
+          animate-[fade-up_0.25s_ease-out]
+        "
       >
-        <h2>{game.name}</h2>
-        <p>{game.description}</p>
-        <img
-          loading="lazy"
-          src={`data:image/jpeg;base64,${game.image}`}
-          alt={game.name}
-          className="w-150 h-100 object-cover rounded-2xl "
-        />
+        {/* Close */}
         <button
           onClick={() => setIsModal(false)}
-          className="absolute top-4 right-4 text-xl"
+          aria-label="Закрыть"
+          className="
+            absolute top-5 right-5 z-10
+            flex items-center justify-center
+            w-10 h-10
+            rounded-full
+            bg-black/5
+            text-gray-600
+            transition
+            hover:bg-black/10 hover:text-black
+          "
         >
           ✕
         </button>
+
+        {/* Image */}
+        <div className="relative w-full h-64 md:h-120 bg-gray-100">
+          <img
+            loading="lazy"
+            src={`data:image/jpeg;base64,${game.image}`}
+            alt={game.name}
+            className="w-full h-full object-cover"
+          />
+
+          {/* Gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+        </div>
+
+        {/* Content */}
+        <div className="p-6 md:p-8 overflow-y-auto max-h-1/2">
+          <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">
+            {game.name}
+          </h2>
+
+          <p className="mt-4 text-gray-700 leading-relaxed whitespace-pre-wrap break-words">
+            {game.description}
+          </p>
+        </div>
       </div>
     </div>
   );

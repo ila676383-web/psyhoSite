@@ -24,6 +24,8 @@ import SectionLead from "@/components/SectionLead";
 import Image from "next/image";
 import BtnFormBack from "@/components/BtnFormBack";
 import ReviewsListMain from "@/components/ReviewsSection/ReviewsListMain";
+import BtnContact from "@/components/BtnContact";
+import GameMainPageNew from "@/components/GameMainPageNew";
 
 const slideEducation = [
   diplom1,
@@ -45,6 +47,8 @@ const page = () => {
         text="Помогаю взрослым людям выйти из кризисов, наладить отношения, повысить уверенность в себе и принять устойчивые решения с помощью психологических консультаций и трансформационных игр."
         image={frame1}
       />
+
+      <GameMainPageNew />
       <Slider
         header={`Место встречи \n уютный кабинет в центре города`}
         slideEducation={slideOffice}
@@ -66,23 +70,24 @@ const page = () => {
 
           <ul className="flex flex-col gap-4">
             <li className="flex flex-col md:flex-row justify-between items-start border-b border-gray-300 pb-4">
-              <h3 className="text-2xl">Индивидуальная консультация</h3>
+              <h3 className="text-2xl max-w-[70%]">
+                Индивидуальная консультация
+              </h3>
               <p>от 5 000 ₽</p>
             </li>
             <li className="flex flex-col md:flex-row justify-between items-start border-b border-gray-300 pb-4">
-              <h3 className="text-2xl">Семейная консультация</h3>
+              <h3 className="text-2xl max-w-[70%]">Семейная консультация</h3>
               <p>от 5 000 ₽</p>
             </li>
             <li className="flex flex-col md:flex-row justify-between items-start border-b border-gray-300 pb-4">
-              <h3 className="text-2xl">Трансформационная игра в группе</h3>
+              <h3 className="text-2xl max-w-[70%]">
+                Трансформационная психологическая игра в группе
+              </h3>
               <p>5 000 ₽</p>
             </li>
             <li className="flex flex-col md:flex-row justify-between items-start border-b border-gray-300 pb-4">
-              <h3 className="text-2xl">Т-игра индивидуально</h3>
-              <p>5 000 ₽</p>
-            </li>
-            <li className="flex flex-col md:flex-row justify-between items-start border-b border-gray-300 pb-4">
-              <h3 className="text-2xl">Семейная т-игра</h3> <p>5 000 ₽</p>
+              <h3 className="text-2xl max-w-[70%]">Т-игра индивидуально</h3>
+              <p>от 5 000 ₽</p>
             </li>
           </ul>
         </div>
@@ -133,9 +138,7 @@ const page = () => {
       <section className="w-full  py-20  flex flex-col gap-12 justify-center items-center">
         <div className="max-w-7xl  px-4 md:px-8 xl:px-16">
           <div className="max-w-3xl mb-12 mx-auto text-center">
-            <h2 className="text-3xl mb-6 tracking-wide">
-              Отзывы клиентов
-            </h2>
+            <h2 className="text-3xl mb-6 tracking-wide">Отзывы клиентов</h2>
             <p className="text-lg leading-relaxed text-gray-600">
               Несколько коротких, но искренних отзывов от клиентов, которые
               подчеркнут эффективность моего подхода и результаты, которых они
@@ -152,6 +155,7 @@ const page = () => {
         slideEducation={slideEducation}
       />
       <BtnFormBack />
+      <BtnContact />
     </main>
   );
 };

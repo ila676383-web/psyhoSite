@@ -16,16 +16,43 @@ const BtnFormBack = () => {
       {/* Floating Button */}
       <button
         onClick={() => dispatch(setIsActive(true))}
+        aria-label="Открыть форму"
         className="
-          fixed bottom-6 right-6 z-30
+          fixed bottom-6 right-6 z-40
+          flex items-center justify-center
+          w-14 h-14
           rounded-full
-          transition-transform duration-300
-          hover:scale-110
+          bg-pink-500
+          text-white
+          shadow-[0_8px_40px_rgba(236,72,153,0.45)]
+          transition
+          hover:scale-110 hover:bg-pink-400
           active:scale-95
         "
-        aria-label="Открыть форму обратной связи"
       >
-        <Image src={btnForm} alt="call form" width={56} height={56} priority />
+        {/* Glow */}
+        <span
+          className="
+            absolute -inset-1
+            rounded-full
+            bg-pink-500/40
+            blur-xl
+            -z-10
+          "
+        />
+
+        {/* Icon */}
+        <svg
+          className="w-6 h-6"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z" />
+        </svg>
       </button>
 
       {/* Modal */}

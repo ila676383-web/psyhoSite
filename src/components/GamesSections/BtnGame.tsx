@@ -14,7 +14,7 @@ const BtnGame = ({game}: {game: GameApi}) => {
         }}
         className="bg-gray-100 p-2 px-10 rounded-2xl shadow-lg hover:scale-105 active:scale-95 transition-transform ease-in-out duration-500"
       >
-        Записаться
+        Подробнее
       </button>
       {isModal && <GameModalMain game={game} setIsModal={setIsModal} />}
     </>
