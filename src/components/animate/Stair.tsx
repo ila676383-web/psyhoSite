@@ -1,12 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
-import dynamic from "next/dynamic";
-const Spline = dynamic(
-  () => import("@splinetool/react-spline"),
-  { ssr: false }
-);
+import Spline from "@splinetool/react-spline";
 
 
 
@@ -14,11 +9,11 @@ export default function Stair() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    // 1. защита от SSR (на всякий случай)
+    //  защита от SSR (на всякий случай)
     if (typeof window === "undefined") return;
 
-  
-    // 3. проверка WebGL
+
+    //  проверка WebGL
     const canvas = document.createElement("canvas");
     const gl =
       canvas.getContext("webgl") ||
