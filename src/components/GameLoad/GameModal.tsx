@@ -44,8 +44,8 @@ const GameModal = ({
         onClick={(e) => e.stopPropagation()}
         className="
           relative
-          w-full max-w-3xl
-          max-h-1/2
+          w-full max-w-xl
+          max-h-3/4
           overflow-auto
           rounded-3xl
           bg-white
